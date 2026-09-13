@@ -9,62 +9,54 @@ const MAP_URL =
 
 const services = [
   {
-    number: "01",
-    icon: "◉",
-    title: "Wedding",
-    text: "Complete wedding photography and cinematic videography for your most important day.",
+    no: "01",
+    title: "WEDDING",
+    text: "Cinematic wedding photography and films that turn real moments into unforgettable memories.",
   },
   {
-    number: "02",
-    icon: "✦",
-    title: "Pre-Wedding",
-    text: "Creative pre-wedding films and photography with a cinematic visual approach.",
+    no: "02",
+    title: "PRE-WEDDING",
+    text: "Creative pre-wedding photography and cinematic films with stylish compositions.",
   },
   {
-    number: "03",
-    icon: "○",
-    title: "Birthday",
-    text: "Capture birthdays, celebrations and special family moments with professional coverage.",
+    no: "03",
+    title: "BIRTHDAY",
+    text: "Professional coverage for birthdays, family celebrations and special moments.",
   },
   {
-    number: "04",
-    icon: "▣",
-    title: "Events",
-    text: "Professional photo and video coverage for events, functions and special occasions.",
+    no: "04",
+    title: "EVENTS",
+    text: "Complete photography and videography coverage for functions and events.",
   },
   {
-    number: "05",
-    icon: "△",
-    title: "Drone",
-    text: "Aerial cinematic shots that add scale, movement and a premium look to your film.",
+    no: "05",
+    title: "DRONE",
+    text: "Aerial cinematic views that give your event film a completely different perspective.",
   },
   {
-    number: "06",
-    icon: "▶",
-    title: "Editing",
-    text: "Cinematic editing, colour treatment, music sync and final video delivery.",
+    no: "06",
+    title: "EDITING",
+    text: "Professional editing, colour treatment, music sync and cinematic finishing.",
   },
 ];
 
 const packages = [
   {
-    name: "Essential",
-    title: "Classic",
+    name: "CLASSIC",
     price: "₹7,999",
-    time: "UP TO 4 HOURS",
+    duration: "UP TO 4 HOURS",
     features: [
       "Photography coverage",
-      "Cinematic video coverage",
+      "Cinematic video",
       "Professional editing",
       "Digital delivery",
-      "Basic colour correction",
+      "Colour correction",
     ],
   },
   {
-    name: "Signature",
-    title: "Premium",
+    name: "PREMIUM",
     price: "₹14,999",
-    time: "UP TO 8 HOURS",
+    duration: "UP TO 8 HOURS",
     featured: true,
     features: [
       "Photography + videography",
@@ -72,18 +64,17 @@ const packages = [
       "Professional editing",
       "Colour grading",
       "Premium digital delivery",
-      "Selected cinematic shots",
+      "Cinematic shots",
     ],
   },
   {
-    name: "Cinematic",
-    title: "Full Day",
+    name: "CINEMATIC",
     price: "₹24,999",
-    time: "FULL DAY COVERAGE",
+    duration: "FULL DAY",
     features: [
       "Full-day photography",
       "Full-day videography",
-      "Cinematic highlight film",
+      "Highlight film",
       "Advanced editing",
       "Professional colour grading",
       "Drone coverage where suitable",
@@ -91,62 +82,25 @@ const packages = [
   },
 ];
 
-const workflow = [
-  {
-    number: "01",
-    title: "Plan",
-    text: "We understand your event, timing, location and coverage requirements.",
-  },
-  {
-    number: "02",
-    title: "Capture",
-    text: "Our focus stays on authentic moments, details and cinematic frames.",
-  },
-  {
-    number: "03",
-    title: "Create",
-    text: "Your footage is professionally selected, edited and colour-treated.",
-  },
-  {
-    number: "04",
-    title: "Deliver",
-    text: "Your finished photographs and films are prepared for digital delivery.",
-  },
-];
-
 function App() {
-  const [introOpen, setIntroOpen] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
+  const [intro, setIntro] = useState(true);
+  const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = introOpen ? "hidden" : "";
+    document.body.style.overflow = intro ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [introOpen]);
+  }, [intro]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
+  const goTo = (id) => {
+    setMenu(false);
 
-    window.addEventListener("scroll", handleScroll);
+    const section = document.getElementById(id);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const enterStudio = () => {
-    setIntroOpen(false);
-  };
-
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-
-    if (element) {
-      element.scrollIntoView({
+    if (section) {
+      section.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -154,509 +108,600 @@ function App() {
   };
 
   return (
-    <div className="app">
-      {/* =====================================================
-          WELCOME / CAMERA INTRO
-      ====================================================== */}
+    <div className="site">
 
-      <div className={`intro ${introOpen ? "" : "intro-hidden"}`}>
-        <div className="intro-noise"></div>
+      {/* ================= INTRO ================= */}
 
-        <div className="intro-camera">
-          <div className="lens-ring"></div>
-          <div className="aperture"></div>
+      <div className={`intro-screen ${intro ? "intro-active" : "intro-close"}`}>
+        <div className="intro-gradient gradient-one"></div>
+        <div className="intro-gradient gradient-two"></div>
+        <div className="intro-gradient gradient-three"></div>
+
+        <div className="intro-top">
+          <span>AYUSH / VISUAL STUDIO</span>
+          <span>EST. 2025</span>
+        </div>
+
+        <div className="intro-camera-wrap">
+
+          <div className="intro-camera">
+            <div className="camera-glow"></div>
+
+            <div className="outer-ring"></div>
+            <div className="outer-ring ring-two"></div>
+            <div className="outer-ring ring-three"></div>
+
+            <div className="lens">
+              <div className="lens-reflection"></div>
+
+              <div className="iris iris-one"></div>
+              <div className="iris iris-two"></div>
+              <div className="iris iris-three"></div>
+              <div className="iris iris-four"></div>
+              <div className="iris iris-five"></div>
+              <div className="iris iris-six"></div>
+
+              <div className="lens-core"></div>
+            </div>
+          </div>
+
         </div>
 
         <div className="intro-content">
-          <div className="intro-est">EST. 2025 • INDIA</div>
 
-          <h1 className="intro-brand">AYUSH VIDEOGRAPHY</h1>
-
-          <p className="intro-tagline">Your Moments. Our Focus.</p>
-
-          <div className="intro-meta">
-            <span>8434034498</span>
-            <span>SIRDALA ROAD, NAWADA</span>
-            <span>BIHAR</span>
+          <div className="intro-small">
+            PHOTOGRAPHY • FILM • CREATIVE
           </div>
 
-          <button className="enter-button" onClick={enterStudio}>
-            ENTER STUDIO
+          <h1>
+            AYUSH
+            <br />
+            <span>VIDEOGRAPHY</span>
+          </h1>
+
+          <p>Your Moments. Our Focus.</p>
+
+          <button
+            className="intro-enter"
+            onClick={() => setIntro(false)}
+          >
+            <span>ENTER STUDIO</span>
+            <b>→</b>
           </button>
+
+        </div>
+
+        <div className="intro-bottom">
+          <span>NAWADA, BIHAR</span>
+          <span>8434034498</span>
         </div>
       </div>
 
-      {/* =====================================================
-          NAVIGATION
-      ====================================================== */}
+      {/* ================= NAVBAR ================= */}
 
-      <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="container nav-inner">
-          <a
-            href="#home"
-            className="nav-logo"
-            onClick={(event) => {
-              event.preventDefault();
-              scrollToSection("home");
-            }}
-          >
-            <span className="logo-mark"></span>
-            <span>AYUSH VIDEOGRAPHY</span>
-          </a>
+      <header className="navbar">
 
-          <nav className="nav-links">
-            <a href="#services">Services</a>
-            <a href="#packages">Packages</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <button
+          className="brand"
+          onClick={() => goTo("home")}
+        >
+          <span className="brand-symbol">A</span>
 
-            <a className="nav-call" href={PHONE_LINK}>
-              CALL NOW
-            </a>
-          </nav>
-        </div>
+          <span>
+            AYUSH
+            <small>VIDEOGRAPHY</small>
+          </span>
+        </button>
+
+        <nav className={menu ? "nav-open" : ""}>
+          <button onClick={() => goTo("home")}>Home</button>
+          <button onClick={() => goTo("services")}>Services</button>
+          <button onClick={() => goTo("packages")}>Packages</button>
+          <button onClick={() => goTo("about")}>About</button>
+          <button onClick={() => goTo("contact")}>Contact</button>
+        </nav>
+
+        <a className="nav-call" href={PHONE_LINK}>
+          CALL NOW
+        </a>
+
+        <button
+          className="menu-button"
+          onClick={() => setMenu(!menu)}
+        >
+          {menu ? "×" : "☰"}
+        </button>
+
       </header>
 
-      {/* =====================================================
-          HERO
-      ====================================================== */}
+      {/* ================= HERO ================= */}
 
       <main>
-        <section className="hero" id="home">
-          <div className="hero-bg"></div>
-          <div className="hero-grid"></div>
-          <div className="hero-scan"></div>
 
-          <div className="container">
-            <div className="hero-content">
-              <div className="hero-kicker">
-                <span className="rec-dot"></span>
-                <span>LIVE • CINEMATIC CAPTURE</span>
+        <section className="hero" id="home">
+
+          <div className="blob blob-a"></div>
+          <div className="blob blob-b"></div>
+          <div className="blob blob-c"></div>
+
+          <div className="scribble scribble-one"></div>
+          <div className="scribble scribble-two"></div>
+
+          <div className="hero-grid"></div>
+
+          <div className="hero-content">
+
+            <div className="hero-label">
+              <span></span>
+              CINEMATIC VISUAL STUDIO
+            </div>
+
+            <h2>
+              WE
+              <br />
+              CAPTURE
+              <br />
+              <em>FEELING.</em>
+            </h2>
+
+            <p>
+              Professional photography and cinematic videography
+              for weddings, pre-weddings, birthdays, events and
+              special celebrations across Nawada, Gaya and Bihar.
+            </p>
+
+            <div className="hero-buttons">
+
+              <a className="button primary" href={PHONE_LINK}>
+                BOOK A SHOOT
+                <span>↗</span>
+              </a>
+
+              <button
+                className="button secondary"
+                onClick={() => goTo("services")}
+              >
+                EXPLORE SERVICES
+                <span>↓</span>
+              </button>
+
+            </div>
+
+          </div>
+
+          {/* 3D CAMERA */}
+
+          <div className="hero-visual">
+
+            <div className="visual-caption">
+              <span>CAM 01</span>
+              <span>4K / 24FPS</span>
+            </div>
+
+            <div className="floating-camera">
+
+              <div className="camera-shadow"></div>
+
+              <div className="camera-top"></div>
+
+              <div className="camera-body">
+                <div className="camera-side-line"></div>
+
+                <div className="camera-name">
+                  AYUSH
+                  <small>VISUAL SYSTEM</small>
+                </div>
+
+                <div className="camera-lens-large">
+
+                  <div className="lens-circle-outer"></div>
+
+                  <div className="lens-circle-mid">
+
+                    <div className="lens-glass">
+                      <div className="glass-shine"></div>
+                      <span>24-70</span>
+                    </div>
+
+                  </div>
+
+                </div>
+
               </div>
 
-              <h1 className="hero-title">
-                YOUR
+            </div>
+
+            <div className="camera-tag tag-one">
+              <span>01</span>
+              FOCUS
+            </div>
+
+            <div className="camera-tag tag-two">
+              <span>02</span>
+              FRAME
+            </div>
+
+            <div className="camera-tag tag-three">
+              <span>03</span>
+              STORY
+            </div>
+
+          </div>
+
+          <div className="scroll-note">
+            SCROLL TO EXPLORE
+            <span>↓</span>
+          </div>
+
+        </section>
+
+        {/* ================= MARQUEE ================= */}
+
+        <div className="marquee">
+
+          <div className="marquee-track">
+            <span>WEDDINGS</span>
+            <i>✦</i>
+            <span>PRE-WEDDINGS</span>
+            <i>✦</i>
+            <span>EVENTS</span>
+            <i>✦</i>
+            <span>DRONE</span>
+            <i>✦</i>
+            <span>FILMS</span>
+            <i>✦</i>
+            <span>PHOTOGRAPHY</span>
+            <i>✦</i>
+
+            <span>WEDDINGS</span>
+            <i>✦</i>
+            <span>PRE-WEDDINGS</span>
+            <i>✦</i>
+            <span>EVENTS</span>
+            <i>✦</i>
+            <span>DRONE</span>
+            <i>✦</i>
+          </div>
+
+        </div>
+
+        {/* ================= SERVICES ================= */}
+
+        <section className="section services-section" id="services">
+
+          <div className="section-header">
+
+            <div>
+              <span className="section-number">01 / 04</span>
+
+              <h2>
+                WHAT
                 <br />
-                <span className="outline">MOMENTS.</span>
+                WE <em>DO.</em>
+              </h2>
+            </div>
+
+            <p>
+              We create photographs and films that feel alive.
+              Every frame is planned, captured and edited with
+              attention to detail.
+            </p>
+
+          </div>
+
+          <div className="services-grid">
+
+            {services.map((service) => (
+              <article className="service-card" key={service.no}>
+
+                <div className="service-top">
+                  <span>{service.no}</span>
+                  <span>↗</span>
+                </div>
+
+                <div className="service-circle">
+                  {service.no}
+                </div>
+
+                <h3>{service.title}</h3>
+
+                <p>{service.text}</p>
+
+                <div className="service-line"></div>
+
+              </article>
+            ))}
+
+          </div>
+
+        </section>
+
+        {/* ================= CINEMATIC BREAK ================= */}
+
+        <section className="cinematic-section">
+
+          <div className="big-orb"></div>
+
+          <div className="cinematic-text">
+
+            <span>EVERY FRAME HAS A</span>
+
+            <h2>
+              <strong>STORY</strong>
+              <br />
+              <em>TO TELL.</em>
+            </h2>
+
+            <p>
+              We don't simply record events.
+              We create visual memories.
+            </p>
+
+          </div>
+
+          <div className="film-strip">
+            <span>●</span>
+            <span>FRAME 01</span>
+            <span>FRAME 02</span>
+            <span>FRAME 03</span>
+            <span>FRAME 04</span>
+            <span>●</span>
+          </div>
+
+        </section>
+
+        {/* ================= PACKAGES ================= */}
+
+        <section className="section packages-section" id="packages">
+
+          <div className="section-header">
+
+            <div>
+              <span className="section-number">02 / 04</span>
+
+              <h2>
+                PICK YOUR
                 <br />
-                OUR FOCUS.
-              </h1>
+                <em>FRAME.</em>
+              </h2>
+            </div>
 
-              <p className="hero-subtitle">
-                Professional photography and cinematic videography for
-                weddings, pre-weddings, birthdays, events and special
-                celebrations across Nawada, Gaya and nearby Bihar.
-              </p>
+            <p>
+              Simple starting packages. Final pricing can be
+              adjusted according to your event, duration,
+              location and coverage requirements.
+            </p>
 
-              <div className="hero-actions">
-                <a className="btn btn-gold" href={PHONE_LINK}>
-                  CALL 8434034498
-                </a>
+          </div>
 
-                <button
-                  className="btn btn-outline"
-                  onClick={() => scrollToSection("packages")}
-                >
-                  VIEW PACKAGES
-                </button>
+          <div className="packages-grid">
+
+            {packages.map((pkg) => (
+              <article
+                className={`package-card ${
+                  pkg.featured ? "package-featured" : ""
+                }`}
+                key={pkg.name}
+              >
+
+                {pkg.featured && (
+                  <div className="popular">
+                    MOST POPULAR
+                  </div>
+                )}
+
+                <span className="package-label">
+                  {pkg.name}
+                </span>
+
+                <h3>{pkg.price}</h3>
+
+                <div className="package-duration">
+                  {pkg.duration}
+                </div>
+
+                <div className="package-divider"></div>
+
+                <ul>
+                  {pkg.features.map((feature) => (
+                    <li key={feature}>
+                      <span>✦</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
 
                 <a
-                  className="btn btn-outline"
-                  href={MAP_URL}
-                  target="_blank"
-                  rel="noreferrer"
+                  className="package-button"
+                  href={PHONE_LINK}
                 >
-                  LOCATION
+                  BOOK PACKAGE
+                  <span>↗</span>
                 </a>
-              </div>
-            </div>
+
+              </article>
+            ))}
+
           </div>
 
-          <div className="hero-camera">
-            <div className="hud hud-top">
-              ISO 400 • F/2.8 • 1/250
-            </div>
-
-            <div className="hud hud-bottom">
-              REC • 4K • 24 FPS
-            </div>
-
-            <div className="camera-body">
-              <div className="camera-label">AYUSH / CAMERA 01</div>
-              <div className="camera-lens"></div>
-            </div>
-
-            <div className="focus-box"></div>
-          </div>
         </section>
 
-        {/* =====================================================
-            TICKER
-        ====================================================== */}
+        {/* ================= ABOUT ================= */}
 
-        <div className="ticker">
-          <div className="ticker-track">
-            <span>Wedding Films</span>
-            <span>Pre-Wedding</span>
-            <span>Photography</span>
-            <span>Drone</span>
-            <span>Events</span>
-            <span>Editing</span>
+        <section className="section about-section" id="about">
 
-            <span>Wedding Films</span>
-            <span>Pre-Wedding</span>
-            <span>Photography</span>
-            <span>Drone</span>
-            <span>Events</span>
-            <span>Editing</span>
+          <div className="about-visual">
+
+            <div className="about-orb"></div>
+
+            <div className="about-frame">
+              <div className="frame-corner tl"></div>
+              <div className="frame-corner tr"></div>
+              <div className="frame-corner bl"></div>
+              <div className="frame-corner br"></div>
+
+              <span>AYUSH / 2025</span>
+
+              <strong>
+                A
+              </strong>
+
+              <small>
+                VISUAL
+                <br />
+                STUDIO
+              </small>
+            </div>
+
           </div>
-        </div>
 
-        {/* =====================================================
-            SERVICES
-        ====================================================== */}
+          <div className="about-content">
 
-        <section className="section" id="services">
-          <div className="container">
-            <div className="eyebrow">WHAT WE CAPTURE</div>
+            <span className="section-number">03 / 04</span>
 
-            <h2 className="section-title">
-              Built around
+            <h2>
+              ABOUT
               <br />
-              <span>your moments.</span>
+              <em>AYUSH.</em>
             </h2>
 
-            <p className="section-description">
-              From intimate celebrations to large events, AYUSH VIDEOGRAPHY
-              creates professional visual stories designed to preserve the
-              atmosphere, emotion and details of your occasion.
+            <p>
+              AYUSH VIDEOGRAPHY is a photography and videography
+              service based in Nawada, Bihar.
             </p>
 
-            <div className="services-grid">
-              {services.map((service) => (
-                <article className="service-card" key={service.number}>
-                  <div className="service-number">{service.number}</div>
-
-                  <div className="service-icon">{service.icon}</div>
-
-                  <h3 className="service-title">{service.title}</h3>
-
-                  <p className="service-text">{service.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            CINEMATIC BREAK
-        ====================================================== */}
-
-        <section className="cinematic-break">
-          <div className="cinematic-ring"></div>
-
-          <div className="cinematic-content">
-            <div className="cinematic-small">
-              FRAME • FOCUS • FEELING
-            </div>
-
-            <h2 className="cinematic-big">
-              SHOOT
-              <br />
-              <span>THE</span>
-              <br />
-              STORY.
-            </h2>
-          </div>
-        </section>
-
-        {/* =====================================================
-            PACKAGES
-        ====================================================== */}
-
-        <section className="section packages" id="packages">
-          <div className="container">
-            <div className="eyebrow">PACKAGES & PRICING</div>
-
-            <h2 className="section-title">
-              Choose your
-              <br />
-              <span>coverage.</span>
-            </h2>
-
-            <p className="section-description">
-              Clear starting packages for different event sizes. Final pricing
-              can be adjusted according to event requirements, location,
-              duration and coverage.
+            <p>
+              Established in 2025 in India, we focus on weddings,
+              pre-weddings, birthdays, events, drone coverage and
+              professional cinematic editing.
             </p>
 
-            <div className="package-grid">
-              {packages.map((pkg) => (
-                <article
-                  className={`package-card ${
-                    pkg.featured ? "featured" : ""
-                  }`}
-                  key={pkg.name}
-                >
-                  {pkg.featured && (
-                    <div className="recommended">RECOMMENDED</div>
-                  )}
+            <div className="about-stats">
 
-                  <p className="package-name">{pkg.name}</p>
-
-                  <h3 className="package-title">{pkg.title}</h3>
-
-                  <p className="package-price">{pkg.price}</p>
-
-                  <div className="package-time">{pkg.time}</div>
-
-                  <ul className="package-list">
-                    {pkg.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))}
-                  </ul>
-
-                  <a
-                    className="btn btn-gold package-button"
-                    href={PHONE_LINK}
-                  >
-                    BOOK THIS PACKAGE
-                  </a>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            ABOUT
-        ====================================================== */}
-
-        <section className="section" id="about">
-          <div className="container">
-            <div className="about-layout">
-              <div className="about-copy">
-                <div className="eyebrow">ABOUT OUR COMPANY</div>
-
-                <h2 className="section-title">
-                  Visual stories
-                  <br />
-                  with <span>purpose.</span>
-                </h2>
-
-                <p>
-                  AYUSH VIDEOGRAPHY is a photography and videography service
-                  based in Nawada, Bihar. We focus on creating clean,
-                  cinematic and meaningful visual memories for weddings,
-                  celebrations, events and special occasions.
-                </p>
-
-                <p>
-                  Established in 2025 in India, our work is built around
-                  professional camera work, thoughtful composition,
-                  cinematic editing and attention to the moments that matter.
-                </p>
-
-                <a className="btn btn-outline" href={PHONE_LINK}>
-                  TALK TO US
-                </a>
-              </div>
-
-              <div className="about-facts">
-                <div className="fact">
-                  <div className="fact-number">01</div>
-                  <h3 className="fact-title">Established</h3>
-                  <p className="fact-text">
-                    Established in 2025 in India.
-                  </p>
-                </div>
-
-                <div className="fact">
-                  <div className="fact-number">02</div>
-                  <h3 className="fact-title">Experience</h3>
-                  <p className="fact-text">
-                    2+ years of experience in the field.
-                  </p>
-                </div>
-
-                <div className="fact">
-                  <div className="fact-number">03</div>
-                  <h3 className="fact-title">Location</h3>
-                  <p className="fact-text">
-                    Sirdala Road, Nawada, Bihar.
-                  </p>
-                </div>
-
-                <div className="fact">
-                  <div className="fact-number">04</div>
-                  <h3 className="fact-title">Service Area</h3>
-                  <p className="fact-text">
-                    Nawada, Gaya and nearby Bihar.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            WORKFLOW
-        ====================================================== */}
-
-        <section className="section">
-          <div className="container">
-            <div className="eyebrow">OUR PROCESS</div>
-
-            <h2 className="section-title">
-              From idea
-              <br />
-              to <span>final frame.</span>
-            </h2>
-
-            <div className="workflow-grid">
-              {workflow.map((step) => (
-                <article className="workflow-step" key={step.number}>
-                  <div className="workflow-number">{step.number}</div>
-
-                  <h3 className="workflow-title">{step.title}</h3>
-
-                  <p className="workflow-text">{step.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            SERVICE AREA
-        ====================================================== */}
-
-        <section className="section">
-          <div className="container">
-            <div className="area-box">
-              <div className="eyebrow">WHERE WE WORK</div>
-
-              <h2 className="area-title">
-                Nawada.
-                <br />
-                Gaya.
-                <br />
-                <span>Bihar.</span>
-              </h2>
-
-              <div className="area-list">
-                <span>NAWADA</span>
-                <span>GAYA</span>
-                <span>NEARBY BIHAR</span>
-                <span>EVENT LOCATIONS</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* =====================================================
-            CONTACT
-        ====================================================== */}
-
-        <section className="section" id="contact">
-          <div className="container">
-            <div className="contact-layout">
               <div>
-                <div className="eyebrow">CONTACT AYUSH VIDEOGRAPHY</div>
-
-                <h2 className="contact-title">
-                  LET'S
-                  <br />
-                  <span>CREATE.</span>
-                </h2>
-
-                <div className="contact-buttons">
-                  <a className="btn btn-gold" href={PHONE_LINK}>
-                    CALL NOW
-                  </a>
-
-                  <a
-                    className="btn btn-outline"
-                    href={MAP_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    OPEN LOCATION
-                  </a>
-                </div>
+                <strong>2025</strong>
+                <span>ESTABLISHED</span>
               </div>
 
-              <div className="contact-info">
-                <div className="contact-item">
-                  <div className="contact-label">PHONE</div>
-
-                  <a className="contact-value" href={PHONE_LINK}>
-                    {PHONE}
-                  </a>
-                </div>
-
-                <div className="contact-item">
-                  <div className="contact-label">ADDRESS</div>
-
-                  <div className="contact-value">
-                    Sirdala Road,
-                    <br />
-                    Nawada, Bihar
-                  </div>
-                </div>
-
-                <div className="contact-item">
-                  <div className="contact-label">SERVICE AREA</div>
-
-                  <div className="contact-value">
-                    Nawada + Gaya + nearby Bihar
-                  </div>
-                </div>
+              <div>
+                <strong>2+</strong>
+                <span>YEARS EXPERIENCE</span>
               </div>
+
+              <div>
+                <strong>BIHAR</strong>
+                <span>SERVICE REGION</span>
+              </div>
+
             </div>
+
           </div>
+
         </section>
+
+        {/* ================= CONTACT ================= */}
+
+        <section className="contact-section" id="contact">
+
+          <div className="contact-shape shape-one"></div>
+          <div className="contact-shape shape-two"></div>
+
+          <div className="contact-inner">
+
+            <span className="section-number">04 / 04</span>
+
+            <h2>
+              LET'S MAKE
+              <br />
+              SOMETHING
+              <br />
+              <em>UNFORGETTABLE.</em>
+            </h2>
+
+            <p>
+              Have an event coming up?
+              Let's talk about your story.
+            </p>
+
+            <div className="contact-buttons">
+
+              <a className="contact-button dark" href={PHONE_LINK}>
+                CALL 8434034498
+                <span>↗</span>
+              </a>
+
+              <a
+                className="contact-button light"
+                href={MAP_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                OPEN LOCATION
+                <span>↗</span>
+              </a>
+
+            </div>
+
+            <div className="contact-details">
+
+              <div>
+                <span>LOCATION</span>
+                <strong>
+                  Sirdala Road,
+                  <br />
+                  Nawada, Bihar
+                </strong>
+              </div>
+
+              <div>
+                <span>PHONE</span>
+                <strong>8434034498</strong>
+              </div>
+
+              <div>
+                <span>AREA</span>
+                <strong>
+                  Nawada + Gaya
+                  <br />
+                  + Nearby Bihar
+                </strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
       </main>
 
-      {/* =====================================================
-          FOOTER
-      ====================================================== */}
+      {/* ================= FOOTER ================= */}
 
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-top">
-            <div>
-              <div className="footer-brand">AYUSH VIDEOGRAPHY</div>
+      <footer>
 
-              <div className="footer-tagline">
-                Your Moments. Our Focus.
-              </div>
-            </div>
-
-            <div className="footer-links">
-              <a href="#home">Home</a>
-              <a href="#services">Services</a>
-              <a href="#packages">Packages</a>
-              <a href="#about">About</a>
-              <a href="#contact">Contact</a>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <span>© 2025 AYUSH VIDEOGRAPHY</span>
-
-            <span>SIRDALA ROAD • NAWADA • BIHAR</span>
-          </div>
+        <div className="footer-brand">
+          AYUSH
+          <span>VIDEOGRAPHY</span>
         </div>
-      </footer>
 
-      {/* =====================================================
-          MOBILE CALL
-      ====================================================== */}
+        <div className="footer-middle">
+          YOUR MOMENTS.
+          <br />
+          OUR FOCUS.
+        </div>
+
+        <div className="footer-right">
+          © 2025 AYUSH VIDEOGRAPHY
+          <br />
+          NAWADA, BIHAR
+        </div>
+
+      </footer>
 
       <a className="mobile-call" href={PHONE_LINK}>
         CALL AYUSH VIDEOGRAPHY • 8434034498
       </a>
+
     </div>
   );
 }
